@@ -1,0 +1,69 @@
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="Cities" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="46970bb5-07cb-41ee-940a-944b7b736013">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="localhost/world"/>
+	<query language="SQL"><![CDATA[SELECT c.code code, c.name name, ci.name city, ci.population
+FROM country c
+LEFT JOIN city ci on c.code = ci.countrycode
+ORDER BY c.code ASC]]></query>
+	<field name="code" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Code"/>
+		<property name="com.jaspersoft.studio.field.label" value="code"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="country"/>
+	</field>
+	<field name="name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Name"/>
+		<property name="com.jaspersoft.studio.field.label" value="name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="country"/>
+	</field>
+	<field name="city" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Name"/>
+		<property name="com.jaspersoft.studio.field.label" value="city"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="city"/>
+	</field>
+	<field name="population" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="Population"/>
+		<property name="com.jaspersoft.studio.field.label" value="population"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="city"/>
+	</field>
+	<variable name="code1" resetType="Group" calculation="Count" resetGroup="Country" class="java.lang.Integer">
+		<expression><![CDATA[$F{code}]]></expression>
+	</variable>
+	<group name="Country">
+		<expression><![CDATA[$F{code}]]></expression>
+		<groupHeader>
+			<band height="50">
+				<element kind="textField" uuid="c1105317-f70f-4be2-8003-04b4fe419ae0" x="0" y="10" width="100" height="30" fontSize="14.0">
+					<expression><![CDATA[$F{code}]]></expression>
+				</element>
+				<element kind="textField" uuid="74ae2117-cf70-4582-954e-a927a154f1c1" x="120" y="10" width="260" height="30" fontSize="14.0">
+					<expression><![CDATA[$F{name}]]></expression>
+				</element>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="57">
+				<element kind="textField" uuid="16c266cc-7c4e-4469-9d96-417fd556f4ba" x="448" y="27" width="100" height="30">
+					<expression><![CDATA[$V{code1}]]></expression>
+				</element>
+			</band>
+		</groupFooter>
+	</group>
+	<title height="55" splitType="Stretch">
+		<element kind="staticText" uuid="fa1f8fdb-b388-447c-b6c8-63c20af6d2c1" x="80" y="12" width="400" height="30" fontSize="19.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[Cities]]></text>
+		</element>
+	</title>
+	<detail>
+		<band height="55" splitType="Stretch">
+			<element kind="textField" uuid="fc4897a4-96c3-4da3-b33b-64622fb57ece" x="0" y="12" width="180" height="30" fontSize="12.0">
+				<expression><![CDATA[$F{city}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="757fce47-a556-4624-8b07-2b92220a0285"/>
+			</element>
+			<element kind="textField" uuid="3eef1f30-947b-4841-b194-7805441ef998" x="200" y="12" width="160" height="30" fontSize="12.0">
+				<expression><![CDATA[$F{population}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="03872463-a490-4679-a23a-82ff9101e2b3"/>
+			</element>
+		</band>
+	</detail>
+</jasperReport>
